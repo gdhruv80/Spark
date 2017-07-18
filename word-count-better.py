@@ -9,6 +9,8 @@ sc = SparkContext(conf = conf)
 
 input = sc.textFile("file:///sparkcourse/book.txt")
 words = input.flatMap(normalizeWords)
+
+# Note: Count by value creates a python object instead of a RDD hence .collect() not required to fetch the data
 wordCounts = words.countByValue()
 
 for word, count in wordCounts.items():
